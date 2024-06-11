@@ -1,4 +1,4 @@
-package space.digitallab.cskf
+package space.digitallab.skf
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

@@ -1,4 +1,4 @@
-package space.digitallab.cskf
+package space.digitallab.skf
 
 open class Event<out T>(private val content: T) {
 

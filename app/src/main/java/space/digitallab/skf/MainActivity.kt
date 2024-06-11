@@ -1,4 +1,4 @@
-package space.digitallab.cskf
+package space.digitallab.skf
 
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
@@ -33,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import space.digitallab.cskf.ui.theme.CskfTheme
+import space.digitallab.skf.ui.theme.CskfTheme
 import kotlin.math.ceil
 import kotlin.math.pow
 
@@ -79,6 +81,7 @@ class MainActivity : ComponentActivity() {
                 .fillMaxSize()
                 .padding(0.dp, 48.dp, 0.dp, 0.dp)
                 .background(Color.White)
+                .verticalScroll(ScrollState(0), true)
         ) {
             val ageRange = remember { mutableIntStateOf(0) }
 
@@ -225,23 +228,14 @@ class MainActivity : ComponentActivity() {
 
         hideKeyboard()
 
-        var calcAge = 0.0
-        var calcKreatinine = 0.0
-        var calcWidth = 0.0
-        var calcHeight = 0.0
-
-        var ckd = 0.0
-        var mdrd = 0.0
-        var kg = 0.0
-
         val womenK = if (womenF) 0.85 else 1.0
         val blackK = if (blackF) 0.742 else 1.0
         val blackK1 = if (blackF) 1.18 else 1.0
 
         try {
-            calcAge = ageF.toDouble()
+            val calcAge = ageF.toDouble()
             try {
-                calcKreatinine = kreatnineF.toDouble()
+                var calcKreatinine = kreatnineF.toDouble()
                 if (calcKreatinine < 5) calcKreatinine *= 88.4017
                 val i1 = -0.329
                 val i2 = -1.209
@@ -262,14 +256,14 @@ class MainActivity : ComponentActivity() {
 
                 if(calcAge >  21){
                     try {
-                        calcWidth = widthF.toDouble()
+                        val calcWidth = widthF.toDouble()
 
-                        mdrd =
+                        val mdrd =
                             ceil(blackK * 186 * m4 * m5 * blackK1)
-                        ckd =
+                        val ckd =
                             ceil(if (womenF) if (calcKreatinine <= 62) 144 * i6 * i10 else 144 * i7 * i10
                             else if (calcKreatinine <= 80) 144 * i8 * i10 else 144 * i9 * i10)
-                        kg =
+                        val kg =
                             ceil((88 * (140 - calcAge) * calcWidth / (72 * calcKreatinine)) * womenK)
 
                         val hpb = if (ckd >= 90) "норма или ХПБ C1 (при наличии других признаков"
@@ -287,7 +281,7 @@ class MainActivity : ComponentActivity() {
                     }
                 }else{
                     try {
-                        calcHeight = heightF.toDouble()
+                        var calcHeight = heightF.toDouble()
                         if (calcHeight < 3) calcHeight *= 3
                         _result.value = Event("Скорость клубочковой фильтрации расчитана по формуле Шварца - ${ceil(41.3*(calcHeight/calcKreatinine))} мл/мин")
                     }catch (_: Exception){

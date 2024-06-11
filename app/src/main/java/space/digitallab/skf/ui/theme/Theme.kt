@@ -1,4 +1,4 @@
-package space.digitallab.cskf.ui.theme
+package space.digitallab.skf.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

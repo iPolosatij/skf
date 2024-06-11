@@ -1,4 +1,4 @@
-package space.digitallab.cskf
+package space.digitallab.skf
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

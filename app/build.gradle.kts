@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "space.digitallab.cskf"
+    namespace = "space.digitallab.skf"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "space.digitallab.cskf"
+        applicationId = "space.digitallab.skf"
         minSdk = 26
         targetSdk = 34
-        versionCode = 4
-        versionName = "4.0"
+        versionCode = 51
+        versionName = "5.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

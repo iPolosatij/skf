@@ -1,4 +1,4 @@
-package space.digitallab.cskf
+package space.digitallab.skf
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -1,4 +1,4 @@
-package space.digitallab.cskf.ui.theme
+package space.digitallab.skf.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
